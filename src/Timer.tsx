@@ -1,5 +1,5 @@
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import { PlayArrow, Pause, ReplayRounded } from "@material-ui/icons";
+import { PlayArrow, Pause, ReplayRounded, VerticalAlignCenter } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 
 function Timer(props: any) {
@@ -44,28 +44,23 @@ function Timer(props: any) {
                 }
             else 
                 return ;
-            }, 1000)
+            }, 10)
         }, [seconds, reset, play])
 
     return (
-        <div className = "Test"  style={{margin: "0 auto", paddingTop: "50px", maxWidth: "340px", textAlign: "center"}} >
+        <div className = "Test"  style={{margin: "0 auto", paddingTop: "50px", maxWidth: "340px", textAlign: "center", verticalAlign: 'middle'}} >
                 <CircularProgressbar 
                         value = {minutes*60 + seconds}
                         minValue = {0}
                         maxValue = {total*60}
                         text = {timerMins + ":" + timerSeconds}
                         styles={
-                        buildStyles({
-                        strokeLinecap: 'round',
-                       
-                    
-                        // Text size
-                        textSize: '10px',
-                        // Colors
-                        pathColor: mode === "work" ? "green" : "red",
-                        textColor: '#f88',
-                        trailColor: '#d6d6d6',
-                        backgroundColor: '#3e98c7',
+                            buildStyles({
+                            strokeLinecap: 'round',
+                            pathColor: mode === "work" ? "green" : "red",
+                            textColor: '#f88',
+                            trailColor: '#d6d6d6',
+                            backgroundColor: '#3e98c7',
                     })}/>
               { play ? <Pause onClick = {() => setPlay(false)} /> : <PlayArrow onClick = {() => setPlay(true)}/> }
               <ReplayRounded onClick = {() => setReset(true)}/>
